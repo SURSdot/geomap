@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>GEO-ECO LAB — Практикум по геоэкологии и устойчивому развитию</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +11,6 @@
 </head>
 <body>
 
-  <!-- Top App Navigation -->
   <header class="app-header">
     <div class="header-container">
       <a href="index.html" class="brand-badge">
@@ -24,133 +23,132 @@
       <div class="header-actions">
         <span class="badge info">
           <span class="status-dot"></span>
-          Система готова к проверке
+          Мониторинг активен
         </span>
-        <button onclick="StateManager.resetAll()" class="btn btn-danger-outline btn-sm">Сбросить прогресс</button>
+        <button onclick="StateManager.resetAll()" class="btn btn-danger-outline btn-sm">Сбросить</button>
       </div>
     </div>
   </header>
 
-  <!-- Main Hub View -->
   <main class="main-content">
     
-    <!-- Hero / Progress Telemetry Banner -->
-    <div class="card" style="margin-bottom: 24px; padding: 28px;">
-      <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 20px;">
+    <!-- Hero / Progress Telemetry -->
+    <div class="card" style="margin-bottom: 20px; padding: 20px;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px;">
         <div style="max-width: 680px;">
-          <div class="badge" style="margin-bottom: 10px;">Академический стандарт РК · 11 класс</div>
-          <h1 style="font-size: 26px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 8px;">
-            Интерактивный тренажёр по прикладной геоэкологии
+          <div class="badge" style="margin-bottom: 8px;">Стандарт РК · 11 класс</div>
+          <h1 style="font-size: 22px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 6px;">
+            Практикум по геоэкологии и устойчивому развитию
           </h1>
-          <p style="color: var(--text-muted); font-size: 14px;">
-            Отработка практических навыков: оценка экологической ёмкости ландшафтов, расчёт компонентов «экологического следа», пространственный анализ водного стресса и проектирование устойчивого водопользования.
+          <p style="color: var(--text-muted); font-size: 13px;">
+            Интерактивный анализ экологической ёмкости территорий, расчёт компонентов экологического следа и проектирование мер водосбережения.
           </p>
         </div>
-        <div style="min-width: 260px; background: var(--bg-subtle); padding: 18px; border-radius: var(--radius-sm); border: 1px solid var(--border-dim);">
-          <div style="display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; font-weight: 600;">
-            <span>Общий прогресс заданий</span>
+        <div style="flex: 1; min-width: 240px; background: var(--bg-subtle); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-dim);">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 12px; font-weight: 600;">
+            <span>Общий прогресс</span>
             <span id="overall-counter" style="font-family: var(--font-mono);">0 / 12</span>
           </div>
           <div class="progress-container">
             <div id="overall-bar" class="progress-bar-fill" style="width: 0%;"></div>
           </div>
-          <div style="display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px; color: var(--text-muted);">
-            <span>Выполнено</span>
+          <div style="display: flex; justify-content: space-between; margin-top: 6px; font-size: 11px; color: var(--text-muted);">
+            <span>Выполнено заданий</span>
             <span id="overall-percent" style="font-family: var(--font-mono); font-weight: 600;">0%</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 4 Module Bento Grid -->
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+    <!-- 4 Modules Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px;">
       
-      <!-- Module 18 -->
+      <!-- § 18 -->
       <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
         <div>
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
             <span class="badge">Параграф 18</span>
-            <span id="badge-p18" class="badge">0 / 3 заданий</span>
+            <span id="badge-p18" class="badge">0 / 3</span>
           </div>
-          <h2 style="font-size: 18px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em;">
+          <h2 style="font-size: 16px; font-weight: 700; margin-bottom: 6px;">
             Местное управление природопользованием
           </h2>
-          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
-            Экологическая напряжённость областей РК, ветровая эрозия почв в Костанае, рекультивация горнодобывающих земель и полномочия органов местного самоуправления.
+          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+            Оценка экологической напряжённости ландшафтов РК, почвозащитный режим и полномочия органов МСУ.
           </p>
-          <div style="border-top: 1px solid var(--border-dim); padding-top: 12px; margin-bottom: 20px; font-size: 12px; display: flex; flex-direction: column; gap: 6px;">
-            <div id="item-p18_t1" style="display: flex; align-items: center; gap: 8px; color: var(--text-muted);">• Зонирование экологической напряжённости</div>
-            <div id="item-p18_t2" style="display: flex; align-items: center; gap: 8px; color: var(--text-muted);">• Региональное природопользование</div>
-            <div id="item-p18_t3" style="display: flex; align-items: center; gap: 8px; color: var(--text-muted);">• Полномочия органов МСУ на местности</div>
+          <div style="border-top: 1px solid var(--border-dim); padding-top: 10px; margin-bottom: 16px; font-size: 12px; display: flex; flex-direction: column; gap: 4px;">
+            <div id="item-p18_t1" style="color: var(--text-muted);">[ ] Зонирование напряжённости ландшафтов</div>
+            <div id="item-p18_t2" style="color: var(--text-muted);">[ ] Региональное природопользование</div>
+            <div id="item-p18_t3" style="color: var(--text-muted);">[ ] Инфраструктура полномочий МСУ</div>
           </div>
         </div>
-        <a href="paragraph-18.html" class="btn btn-primary" style="width: 100%;">Перейти к модулю § 18 →</a>
+        <a href="paragraph-18.html" class="btn btn-primary" style="width: 100%;">Открыть модуль § 18</a>
       </div>
 
-      <!-- Module 19 -->
+      <!-- § 19 -->
       <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
         <div>
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
             <span class="badge">Параграф 19</span>
-            <span id="badge-p19" class="badge">0 / 3 заданий</span>
+            <span id="badge-p19" class="badge">0 / 3</span>
           </div>
-          <h2 style="font-size: 18px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em;">
+          <h2 style="font-size: 16px; font-weight: 700; margin-bottom: 6px;">
             «Экологический след» и устойчивое развитие
           </h2>
-          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
-            Концепция Матиса Вакернагеля и Уильяма Риза. Страны-лидеры по давлению на биосферу, критические пределы биоёмкости и калькулятор 6 слагаемых.
+          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+            Давление на биосферу, география выхода за пределы биоёмкости и модель 6 слагаемых Wackernagel & Rees.
           </p>
-          <div style="border-top: 1px solid var(--border-dim); padding-top: 12px; margin-bottom: 20px; font-size: 12px; display: flex; flex-direction: column; gap: 6px;">
-            <div id="item-p19_t1" style="display: flex; align-items: center; gap: 8px; color: var(--text-muted);">• Страны с экоследом > 4 планет</div>
-            <div id="item-p19_t2" style="display: flex; align-items: center; gap: 8px; color: var(--text-muted);">• Локализация «Выхода за пределы»</div>
-            <div id="item-p19_t3" style="display: flex; align-items: center; gap: 8px; color: var(--text-muted);">• Симулятор 6 слагаемых биоёмкости</div>
+          <div style="border-top: 1px solid var(--border-dim); padding-top: 10px; margin-bottom: 16px; font-size: 12px; display: flex; flex-direction: column; gap: 4px;">
+            <div id="item-p19_t1" style="color: var(--text-muted);">[ ] Государства с высоким экоследом</div>
+            <div id="item-p19_t2" style="color: var(--text-muted);">[ ] Локализация зон «выхода за пределы»</div>
+            <div id="item-p19_t3" style="color: var(--text-muted);">[ ] Расчёт 6 слагаемых биоёмкости</div>
           </div>
         </div>
-        <a href="paragraph-19.html" class="btn btn-primary" style="width: 100%;">Перейти к модулю § 19 →</a>
+        <a href="paragraph-19.html" class="btn btn-primary" style="width: 100%;">Открыть модуль § 19</a>
       </div>
 
-      <!-- Module 20 -->
+      <!-- § 20 -->
       <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
         <div>
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
             <span class="badge">Параграф 20</span>
-            <span id="badge-p20" class="badge">0 / 3 заданий</span>
+            <span id="badge-p20" class="badge">0 / 3</span>
           </div>
-          <h2 style="font-size: 18px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em;">
+          <h2 style="font-size: 16px; font-weight: 700; margin-bottom: 6px;">
             Вода и «экологический след»
           </h2>
-          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
-            Мировой кризис пресной воды, градация водного стресса (<10%... >40%), гидрографическая сеть Казахстана (Сырдарья, Или, Балхаш, Иртыш) и аридные зоны суши.
+          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+            Градация уровней водного стресса, экологическое состояние речных бассейнов РК и мировой водный кризис.
           </p>
-          <div style="border-top: 1px solid var(--border-dim); padding-top: 12px; margin-bottom: 20px; font-size: 12px; display: flex; flex-direction: column; gap: 6px;">
-            <div id="item-p20_t1" style="display: flex; align-items: center; gap: 8px; color: var(--text-muted);">• Классификация водного стресса</div>
-            <div id="item-p20_t2" style="display: flex; align-items: center; gap: 8px; color: var(--text-muted);">• Дефицит и экологические нормы в РК</div>
-            <div id="item-p20_t3" style="display: flex; align-items: center; gap: 8px; color: var(--text-muted);">• Анализ аридных поясов и кризиса</div>
+          <div style="border-top: 1px solid var(--border-dim); padding-top: 10px; margin-bottom: 16px; font-size: 12px; display: flex; flex-direction: column; gap: 4px;">
+            <div id="item-p20_t1" style="color: var(--text-muted);">[ ] Оценка шкалы водного стресса</div>
+            <div id="item-p20_t2" style="color: var(--text-muted);">[ ] Гидрографическая сеть Казахстана</div>
+            <div id="item-p20_t3" style="color: var(--text-muted);">[ ] Анализ аридных поясов суши</div>
           </div>
         </div>
-        <a href="paragraph-20.html" class="btn btn-primary" style="width: 100%;">Перейти к модулю § 20 →</a>
+        <a href="paragraph-20.html" class="btn btn-primary" style="width: 100%;">Открыть модуль § 20</a>
       </div>
 
-      <!-- Module 21 -->
+      <!-- § 21 -->
       <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
         <div>
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
             <span class="badge">Параграф 21</span>
-            <span id="badge-p21" class="badge">0 / 3 заданий</span>
+            <span id="badge-p21" class="badge">0 / 3</span>
           </div>
-          <h2 style="font-size: 18px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em;">
+          <h2 style="font-size: 16px; font-weight: 700; margin-bottom: 6px;">
             Устойчивое водопользование
           </h2>
-          <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
-            Принципы ИУВР, капельное орошение (-30–70% потерь), ликвидация 25% утечек металлополимерным бандажом и адаптация к таянию ледников Тянь-Шаня.
+          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+            Внедрение водосберегающих технологий, ликвидация утечек металлополимером и адаптация к таянию ледников.
           </p>
-          <div style="border-top: 1px solid var(--border-dim); padding-top: 12px; margin-bottom: 20px; font-size: 12px; display: flex; flex-direction: column; gap: 6px;">
-            <div id="item-p21_t1" style="display: flex; align-items: center; gap: 8px; color: var(--text-muted);">• Комплекс водосбережения регионов</div>
-            <div id="item-p21_t2" style="display: flex; align-items: center; gap: 8px; color: var(--text-muted);">• Устранение утечек: полимерный бандаж</div>
-            <div id="item-p21_t3" style="display: flex; align-items: center; gap: 8px; color: var(--text-muted);">• Климатическая адаптация ледников</div>
+          <div style="border-top: 1px solid var(--border-dim); padding-top: 10px; margin-bottom: 16px; font-size: 12px; display: flex; flex-direction: column; gap: 4px;">
+            <div id="item-p21_t1" style="color: var(--text-muted);">[ ] Отраслевое водосбережение</div>
+            <div id="item-p21_t2" style="color: var(--text-muted);">[ ] Ремонт водоводов металлополимером</div>
+            <div id="item-p21_t3" style="color: var(--text-muted);">[ ] Мониторинг ледникового стока</div>
           </div>
         </div>
-        <a href="paragraph-21.html" class="btn btn-primary" style="width: 100%;">Перейти к модулю § 21 →</a>
+        <a href="paragraph-21.html" class="btn btn-primary" style="width: 100%;">Открыть модуль § 21</a>
       </div>
 
     </div>
@@ -168,20 +166,16 @@
         const pCount = stats.byParagraph[p] || 0;
         const badge = document.getElementById(`badge-p${p}`);
         badge.innerText = `${pCount} / 3 выполнено`;
-        if (pCount === 3) {
-          badge.className = 'badge success';
-        } else if (pCount > 0) {
-          badge.className = 'badge warning';
-        }
+        if (pCount === 3) badge.className = 'badge success';
+        else if (pCount > 0) badge.className = 'badge warning';
       });
 
-      // Individual task indicators
       Object.keys(TASK_REGISTRY).forEach(taskId => {
         const item = document.getElementById(`item-${taskId}`);
         if (item && StateManager.isCompleted(taskId)) {
           item.style.color = '#059669';
           item.style.fontWeight = '600';
-          item.innerHTML = `✓ ${TASK_REGISTRY[taskId].title}`;
+          item.innerText = `[OK] ${TASK_REGISTRY[taskId].title}`;
         }
       });
     }

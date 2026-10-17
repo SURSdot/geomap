@@ -1,7 +1,7 @@
 /* ==========================================================================
    GEO-ECO LAB DESIGN SYSTEM
    Theme: Light Minimalist SaaS / Clean Data Dashboard
-   Base Tokens: Neutral Slate / Titanium Silver / Emerald & Sky Accents
+   Mobile-First & Touch-Friendly (Zero Emojis, Esri Gray Standard)
    ========================================================================== */
 
 :root {
@@ -24,7 +24,6 @@
   /* Accents */
   --accent-primary: #0f172a;
   --accent-primary-hover: #1e293b;
-  --color-brand: #0284c7;
   --color-success: #059669;
   --color-success-bg: #ecfdf5;
   --color-warning: #d97706;
@@ -34,15 +33,15 @@
   --color-info: #2563eb;
   --color-info-bg: #eff6ff;
 
-  /* Elevation & Borders */
+  /* Elevation & Shape */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
   --radius-full: 9999px;
   --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.05);
-  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.04);
-  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
-  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08);
   --specular-card: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 1px 3px rgba(15, 23, 42, 0.06);
 }
 
@@ -50,6 +49,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -58,7 +58,7 @@ body {
   color: var(--text-main);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
 }
@@ -76,17 +76,18 @@ body {
 .header-container {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 24px;
-  height: 64px;
+  padding: 0 16px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
 }
 
 .brand-badge {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   text-decoration: none;
   color: inherit;
 }
@@ -100,39 +101,38 @@ body {
   place-items: center;
   color: #fff;
   font-weight: 700;
-  font-size: 14px;
-  letter-spacing: -0.05em;
+  font-size: 13px;
+  letter-spacing: -0.04em;
+  flex-shrink: 0;
 }
 
 .brand-title {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: var(--text-main);
 }
 
 .brand-subtitle {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--text-muted);
-  font-weight: 400;
 }
 
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
 }
 
-/* Layout Container */
+/* Main Container */
 .main-content {
   flex: 1;
   max-width: 1440px;
   width: 100%;
   margin: 0 auto;
-  padding: 24px;
+  padding: 16px;
 }
 
-/* Component: Badges & Chips */
+/* Badges */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -149,25 +149,25 @@ body {
 
 .badge.success {
   background: var(--color-success-bg);
-  border-color: rgba(5, 150, 105, 0.2);
+  border-color: rgba(5, 150, 105, 0.25);
   color: var(--color-success);
 }
 
 .badge.warning {
   background: var(--color-warning-bg);
-  border-color: rgba(217, 119, 6, 0.2);
+  border-color: rgba(217, 119, 6, 0.25);
   color: var(--color-warning);
 }
 
 .badge.danger {
   background: var(--color-danger-bg);
-  border-color: rgba(220, 38, 38, 0.2);
+  border-color: rgba(220, 38, 38, 0.25);
   color: var(--color-danger);
 }
 
 .badge.info {
   background: var(--color-info-bg);
-  border-color: rgba(37, 99, 235, 0.2);
+  border-color: rgba(37, 99, 235, 0.25);
   color: var(--color-info);
 }
 
@@ -178,13 +178,13 @@ body {
   background: currentColor;
 }
 
-/* Component: Buttons */
+/* Buttons (Touch target >= 44px on mobile) */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 8px 16px;
+  padding: 9px 16px;
   border-radius: var(--radius-sm);
   font-size: 13px;
   font-weight: 500;
@@ -193,6 +193,7 @@ body {
   border: 1px solid transparent;
   font-family: inherit;
   text-decoration: none;
+  min-height: 40px;
 }
 
 .btn-primary {
@@ -204,7 +205,6 @@ body {
 
 .btn-primary:hover {
   background: var(--accent-primary-hover);
-  border-color: var(--accent-primary-hover);
 }
 
 .btn-secondary {
@@ -225,47 +225,37 @@ body {
   border-color: rgba(220, 38, 38, 0.3);
 }
 
-.btn-danger-outline:hover {
-  background: var(--color-danger-bg);
-}
-
 .btn-sm {
-  padding: 5px 10px;
+  padding: 6px 12px;
   font-size: 12px;
+  min-height: 34px;
 }
 
-/* Cards & Surfaces */
+/* Card Container */
 .card {
   background: var(--bg-surface);
   border: 1px solid var(--border-dim);
   border-radius: var(--radius-md);
   box-shadow: var(--specular-card);
-  padding: 20px;
+  padding: 16px;
   position: relative;
 }
 
-/* Two-column Interactive Workspace */
+/* Workspace Grid & Mobile Collapse */
 .workspace-grid {
   display: grid;
-  grid-template-columns: 380px 1fr;
-  gap: 20px;
-  height: calc(100vh - 180px);
-  min-height: 640px;
-}
-
-@media (max-width: 1024px) {
-  .workspace-grid {
-    grid-template-columns: 1fr;
-    height: auto;
-  }
+  grid-template-columns: 400px 1fr;
+  gap: 16px;
+  height: calc(100dvh - 120px);
+  min-height: 600px;
 }
 
 .sidebar-panel {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   overflow-y: auto;
-  padding-right: 4px;
+  padding-right: 2px;
 }
 
 .map-panel {
@@ -274,6 +264,7 @@ body {
   position: relative;
   overflow: hidden;
   padding: 0;
+  min-height: 380px;
 }
 
 .map-container {
@@ -281,54 +272,34 @@ body {
   height: 100%;
   border-radius: var(--radius-md);
   z-index: 1;
+  background-color: #e5e7eb;
 }
 
-/* Map Overlays & Toolbars */
-.map-toolbar {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  z-index: 400;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--border-dim);
-  border-radius: var(--radius-sm);
-  padding: 8px 12px;
-  box-shadow: var(--shadow-sm);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 12px;
+/* Mobile Responsiveness */
+@media (max-width: 960px) {
+  .workspace-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: unset;
+  }
+  
+  .map-panel {
+    order: -1;
+    height: 380px;
+  }
+
+  .header-container {
+    height: auto;
+    padding: 10px 16px;
+    flex-wrap: wrap;
+  }
+
+  .brand-subtitle {
+    display: none;
+  }
 }
 
-.map-legend {
-  position: absolute;
-  bottom: 14px;
-  left: 14px;
-  z-index: 400;
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid var(--border-dim);
-  border-radius: var(--radius-sm);
-  padding: 10px 14px;
-  box-shadow: var(--shadow-sm);
-  font-size: 12px;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 4px;
-}
-
-.legend-color {
-  width: 12px;
-  height: 12px;
-  border-radius: 2px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-/* Tab Navigation */
+/* Tabs: Horizontal Scroll on Mobile */
 .tabs-nav {
   display: flex;
   gap: 4px;
@@ -336,11 +307,14 @@ body {
   padding: 4px;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-dim);
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 .tab-btn {
   flex: 1;
-  padding: 6px 12px;
+  min-width: 90px;
+  padding: 8px 12px;
   border-radius: var(--radius-sm);
   background: transparent;
   border: none;
@@ -350,10 +324,7 @@ body {
   cursor: pointer;
   transition: all 0.15s ease;
   font-family: inherit;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
+  min-height: 36px;
 }
 
 .tab-btn.active {
@@ -363,35 +334,47 @@ body {
   font-weight: 600;
 }
 
-/* Modals & Toasts */
-.toast-notice {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 2000;
-  padding: 12px 18px;
+/* Map Overlays */
+.map-toolbar {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  z-index: 400;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--border-dim);
   border-radius: var(--radius-sm);
-  background: var(--accent-primary);
-  color: #fff;
-  font-size: 13px;
-  box-shadow: var(--shadow-lg);
+  padding: 8px 12px;
+  box-shadow: var(--shadow-sm);
+  font-size: 12px;
   display: flex;
   align-items: center;
-  gap: 10px;
-  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  justify-content: space-between;
 }
 
-@keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+/* Form Controls */
+select, input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-dim);
+  font-family: inherit;
+  font-size: 13px;
+  background: #fff;
+  color: var(--text-main);
+  outline: none;
+  min-height: 42px;
 }
 
-/* Sliders & Inputs */
+select:focus, input[type="text"]:focus {
+  border-color: var(--border-focus);
+}
+
 .slider-group {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .slider-label {
@@ -405,30 +388,36 @@ body {
 .range-input {
   width: 100%;
   accent-color: #0f172a;
-  height: 6px;
+  height: 8px;
   border-radius: var(--radius-full);
   background: var(--border-dim);
 }
 
-/* Custom Leaflet overrides */
-.leaflet-container {
-  font-family: var(--font-sans) !important;
+/* Toasts */
+.toast-notice {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-primary);
+  color: #fff;
+  font-size: 13px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 90vw;
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.leaflet-popup-content-wrapper {
-  border-radius: var(--radius-sm) !important;
-  box-shadow: var(--shadow-md) !important;
-  border: 1px solid var(--border-dim);
-  padding: 4px;
+@keyframes slideUp {
+  from { transform: translate(-50%, 20px); opacity: 0; }
+  to { transform: translate(-50%, 0); opacity: 1; }
 }
 
-.leaflet-popup-content {
-  margin: 10px 12px !important;
-  font-size: 13px !important;
-  line-height: 1.4 !important;
-}
-
-/* Progress Tracker Bar */
 .progress-container {
   background: var(--border-dim);
   height: 8px;
@@ -440,16 +429,16 @@ body {
   height: 100%;
   background: var(--color-success);
   transition: width 0.3s ease;
-}/* ==========================================================================
-   Стилизация тайлов OpenStreetMap под минималистичный Clean SaaS Dashboard
-   (Устраняет необходимость в сторонних платных API-ключах)
-   ========================================================================== */
-
-.leaflet-tile-pane {
-  filter: grayscale(92%) contrast(96%) brightness(106%);
-  -webkit-filter: grayscale(92%) contrast(96%) brightness(106%);
 }
 
-.map-container {
-  background-color: #f1f5f9;
+/* SVG icons helpers */
+.ui-icon {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  flex-shrink: 0;
 }

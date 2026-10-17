@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>§ 20. Вода и «экологический след» — GEO-ECO LAB</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -12,12 +12,12 @@
 
   <header class="app-header">
     <div class="header-container">
-      <div style="display: flex; align-items: center; gap: 16px;">
-        <a href="index.html" class="btn btn-secondary btn-sm">← На главную</a>
-        <div style="font-size: 14px; font-weight: 600;">§ 20. Вода и «экологический след»</div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <a href="index.html" class="btn btn-secondary btn-sm">На главную</a>
+        <div style="font-size: 13px; font-weight: 600;">§ 20. Вода и «экологический след»</div>
       </div>
       <div class="header-actions">
-        <span id="module-progress" class="badge">0 / 3 выполнено</span>
+        <span id="module-progress" class="badge">0 / 3</span>
       </div>
     </div>
   </header>
@@ -32,38 +32,39 @@
           <button class="tab-btn" onclick="switchTask(3)">Задание 3</button>
         </div>
 
-        <!-- Task 1 -->
+        <!-- Task 1: Шкала -->
         <div id="task-view-1" class="card">
-          <div class="badge" style="margin-bottom: 8px;">Задание 1. Шкала водного стресса</div>
-          <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 8px;">Соотношение водозабора и ресурсов</h3>
+          <div class="badge" style="margin-bottom: 8px;">Задание 1</div>
+          <h3 style="font-size: 14px; font-weight: 700; margin-bottom: 6px;">Шкала оценки водного стресса</h3>
           <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
-            Распределите уровни стресса по международной методике ООН:
+            Установите градации по соотношению водозабора отраслями хозяйства к доступным возобновляемым ресурсам:
           </p>
 
-          <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; font-size: 12px;">
+          <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px;">
             <div>
-              <label>Менее 10% водозабора:</label>
-              <select id="ws-val-1" style="width: 100%; padding: 6px; border: 1px solid var(--border-dim); border-radius: var(--radius-sm);">
+              <label style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 4px;">Водозабор менее 10%:</label>
+              <select id="ws-val-1">
                 <option value="">-- Выберите статус --</option>
                 <option value="none">Водного стресса нет</option>
                 <option value="weak">Слабая нехватка воды</option>
-                <option value="critical">Острый водный стресс</option>
+                <option value="critical">Острый дефицит</option>
               </select>
             </div>
             <div>
-              <label>20–40% водозабора:</label>
-              <select id="ws-val-2" style="width: 100%; padding: 6px; border: 1px solid var(--border-dim); border-radius: var(--radius-sm);">
+              <label style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 4px;">Водозабор от 20% до 40%:</label>
+              <select id="ws-val-2">
                 <option value="">-- Выберите статус --</option>
-                <option value="moderate">Умеренное превышение</option>
                 <option value="none">Водного стресса нет</option>
+                <option value="moderate">Умеренное превышение</option>
+                <option value="critical">Острый дефицит</option>
               </select>
             </div>
             <div>
-              <label>Свыше 40% водозабора:</label>
-              <select id="ws-val-3" style="width: 100%; padding: 6px; border: 1px solid var(--border-dim); border-radius: var(--radius-sm);">
+              <label style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 4px;">Водозабор свыше 40%:</label>
+              <select id="ws-val-3">
                 <option value="">-- Выберите статус --</option>
-                <option value="critical">Высокий уровень нехватки (водный стресс)</option>
                 <option value="moderate">Умеренное превышение</option>
+                <option value="critical">Высокий уровень нехватки (водный стресс)</option>
               </select>
             </div>
           </div>
@@ -71,30 +72,54 @@
           <button onclick="verifyTask1()" class="btn btn-primary" style="width: 100%;">Проверить шкалу</button>
         </div>
 
-        <!-- Task 2 -->
+        <!-- Task 2: Реки РК (без готовых ответов) -->
         <div id="task-view-2" class="card" style="display: none;">
-          <div class="badge" style="margin-bottom: 8px;">Задание 2. Гидрография Казахстана</div>
-          <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 8px;">Бассейны и экологические нормы</h3>
+          <div class="badge" style="margin-bottom: 8px;">Задание 2</div>
+          <h3 style="font-size: 14px; font-weight: 700; margin-bottom: 6px;">Водные бассейны Казахстана</h3>
           <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
-            В параграфе указано, что воды многих рек и озёр РК не соответствуют нормам, а к 2020–2040 гг. дефицит обострится. Кликните по ключевым водным артериям на карте и укажите экологический вызов.
+            Сопоставьте гидрографические объекты РК с характером их геоэкологических проблем:
           </p>
 
-          <button onclick="verifyTask2()" class="btn btn-primary" style="width: 100%;">Подтвердить анализ рек РК</button>
-        </div>
+          <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px;">
+            <div>
+              <label style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 4px;">Бассейн Сырдарьи:</label>
+              <select id="rk-syrdarya">
+                <option value="">-- Выберите экологический фактор --</option>
+                <option value="aral_depletion">Высокий забор на орошение и обмеление Аральского бассейна</option>
+                <option value="permafrost">Термокарстовые провалы береговой линии</option>
+                <option value="glacier_overflow">Затопление паводковыми водами ледников</option>
+              </select>
+            </div>
 
-        <!-- Task 3 -->
-        <div id="task-view-3" class="card" style="display: none;">
-          <div class="badge" style="margin-bottom: 8px;">Задание 3. Аридные пояса мира</div>
-          <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 8px;">Спад подушевого потребления</h3>
-          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
-            Аридные и полузасушливые зоны занимают <strong>40% суши</strong>, но обладают лишь <strong>2%</strong> запасов воды. Найдите страны из § 20 со спадом потребления на душу населения (Чад, Нигерия, Япония).
-          </p>
-
-          <div style="font-size: 12px; background: var(--bg-subtle); padding: 10px; border-radius: var(--radius-sm); margin-bottom: 16px;">
-            Кликните на маркеры стран на карте мира, чтобы классифицировать причины снижения водопотребления.
+            <div>
+              <label style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 4px;">Озеро Балхаш и река Или:</label>
+              <select id="rk-balkhash">
+                <option value="">-- Выберите экологический фактор --</option>
+                <option value="salinization">Угроза деградации экосистемы из-за трансграничного забора</option>
+                <option value="cooling">Чрезмерное охлаждение водных масс</option>
+              </select>
+            </div>
           </div>
 
-          <button onclick="verifyTask3()" class="btn btn-primary" style="width: 100%;">Проверить страны кризиса</button>
+          <button onclick="verifyTask2()" class="btn btn-primary" style="width: 100%;">Проверить анализ бассейнов</button>
+        </div>
+
+        <!-- Task 3: Аридные регионы -->
+        <div id="task-view-3" class="card" style="display: none;">
+          <div class="badge" style="margin-bottom: 8px;">Задание 3</div>
+          <h3 style="font-size: 14px; font-weight: 700; margin-bottom: 6px;">Аридные зоны и мировой водный кризис</h3>
+          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+            Засушливые пояса охватывают 40% суши, но аккумулируют лишь 2% мировых запасов воды. Выберите из списка страны, где подушевое потребление воды сокращается из-за истощения источников и удорожания водоочистки:
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; font-size: 13px;">
+            <label><input type="checkbox" id="chk-country-chad"> Чад</label>
+            <label><input type="checkbox" id="chk-country-norway"> Норвегия</label>
+            <label><input type="checkbox" id="chk-country-nigeria"> Нигерия</label>
+            <label><input type="checkbox" id="chk-country-japan"> Япония</label>
+          </div>
+
+          <button onclick="verifyTask3()" class="btn btn-primary" style="width: 100%;">Проверить страны</button>
         </div>
 
         <div id="task-feedback" class="card" style="display: none; background: var(--bg-subtle);">
@@ -105,7 +130,7 @@
 
       <div class="card map-panel">
         <div class="map-toolbar">
-          <span style="font-weight: 600;" id="map-mode-label">Карта: Водные объекты и гидростресс</span>
+          <span style="font-weight: 600;" id="map-mode-label">Карта: Водные объекты и стресс</span>
         </div>
         <div id="map20" class="map-container"></div>
       </div>
@@ -136,24 +161,22 @@
       });
 
       if (num === 1) {
-        document.getElementById('map-mode-label').innerText = 'Карта: Классификация водного стресса по бассейнам мира';
+        document.getElementById('map-mode-label').innerText = 'Карта: Водный стресс бассейнов мира';
         map.setView([25.0, 30.0], 2);
         renderTask1Visual();
       } else if (num === 2) {
-        document.getElementById('map-mode-label').innerText = 'Карта: Основные водные артерии Казахстана';
+        document.getElementById('map-mode-label').innerText = 'Карта: Гидрографическая сеть Казахстана';
         map.setView([46.0, 72.0], 5);
         renderTask2Visual();
       } else if (num === 3) {
-        document.getElementById('map-mode-label').innerText = 'Карта: Аридные регионы и страны с падением потребления';
-        map.setView([15.0, 20.0], 3);
+        document.getElementById('map-mode-label').innerText = 'Карта: Аридные регионы и спад потребления';
+        map.setView([20.0, 20.0], 2);
         renderTask3Visual();
       }
     }
 
     function renderTask1Visual() {
-      // Global water stress sample hotspots
-      L.circle([28.0, 30.0], { radius: 1000000, color: '#dc2626', fillColor: '#ef4444', fillOpacity: 0.5 }).addTo(map).bindPopup('Северная Африка / Ближний Восток: Стресс > 40%');
-      L.circle([55.0, 10.0], { radius: 800000, color: '#10b981', fillColor: '#10b981', fillOpacity: 0.4 }).addTo(map).bindPopup('Северная Европа: Водный стресс < 10%');
+      L.circle([26.0, 35.0], { radius: 1200000, color: '#dc2626', fillColor: '#ef4444', fillOpacity: 0.35 }).addTo(map).bindPopup('Регион Ближнего Востока и Северной Африки (>40%)');
     }
 
     function verifyTask1() {
@@ -166,55 +189,68 @@
       fb.style.display = 'block';
 
       if (v1 === 'none' && v2 === 'moderate' && v3 === 'critical') {
-        fc.innerHTML = '<span style="color:#059669; font-weight:700;">✓ Верно!</span> Шкала из § 20 усвоена: <10% — нет стресса, 20–40% — умеренное превышение, >40% — высокий водный стресс.';
+        fc.innerHTML = '<span style="color:#059669; font-weight:700;">[OK] Верно.</span> Шкала градации водного стресса ООН определена безошибочно.';
         StateManager.setCompleted('p20_t1', 100);
-        showToast('Задание 1 зачтено!', 'success');
+        showToast('Задание 1 выполнено', 'success');
         updateHeaderBadge();
       } else {
-        fc.innerHTML = '<span style="color:#dc2626; font-weight:700;">✗ Ошибка в градации.</span> Перечитайте подраздел «Оценка водного стресса».';
+        fc.innerHTML = '<span style="color:#dc2626; font-weight:700;">[X] Неверная шкала.</span> Повторите градации процента водозабора из текста § 20.';
       }
     }
 
     function renderTask2Visual() {
-      // River traces in KZ
-      L.polyline([[41.5, 68.0], [44.8, 65.5], [46.0, 61.0]], { color: '#0284c7', weight: 4 }).addTo(map).bindPopup('<b>Бассейн реки Сырдарья</b><br>Острый дефицит в низовьях, высыхание Аральского моря.');
-      L.polyline([[44.0, 80.0], [45.0, 77.0], [45.3, 74.0]], { color: '#0284c7', weight: 4 }).addTo(map).bindPopup('<b>Река Или и озеро Балхаш</b><br>Трансграничный водозабор и экологическая нестабильность.');
-      L.polyline([[47.5, 84.5], [50.4, 80.2], [52.3, 76.9]], { color: '#0284c7', weight: 4 }).addTo(map).bindPopup('<b>Река Иртыш</b><br>Главная водная магистраль востока и севера РК.');
+      L.polyline([[41.5, 68.0], [44.8, 65.5], [46.0, 61.0]], { color: '#0284c7', weight: 4 }).addTo(map).bindPopup('Бассейн Сырдарьи');
+      L.polyline([[44.0, 80.0], [45.0, 77.0], [45.3, 74.0]], { color: '#0284c7', weight: 4 }).addTo(map).bindPopup('Река Или и озеро Балхаш');
     }
 
     function verifyTask2() {
+      const v1 = document.getElementById('rk-syrdarya').value;
+      const v2 = document.getElementById('rk-balkhash').value;
+
       const fb = document.getElementById('task-feedback');
       const fc = document.getElementById('feedback-content');
       fb.style.display = 'block';
-      fc.innerHTML = '<span style="color:#059669; font-weight:700;">✓ Анализ подтверждён!</span> Проблема несоответствия вод экологическим нормам и дефицита — ключевой вызов устойчивого развития РК.';
-      StateManager.setCompleted('p20_t2', 100);
-      showToast('Задание 2 зачтено!', 'success');
-      updateHeaderBadge();
+
+      if (v1 === 'aral_depletion' && v2 === 'salinization') {
+        fc.innerHTML = '<span style="color:#059669; font-weight:700;">[OK] Верно.</span> Вы правильно выделили угрозы дефицита стока трансграничных бассейнов РК.';
+        StateManager.setCompleted('p20_t2', 100);
+        showToast('Задание 2 выполнено', 'success');
+        updateHeaderBadge();
+      } else {
+        fc.innerHTML = '<span style="color:#dc2626; font-weight:700;">[X] Ошибка анализа.</span> Сопоставьте бассейны с экологическими факторами из § 20.';
+      }
     }
 
     function renderTask3Visual() {
-      L.marker([15.4, 18.7]).addTo(map).bindPopup('<b>Чад</b><br>Высыхание озера Чад, истощение источников, спад водопотребления.');
-      L.marker([9.0, 8.6]).addTo(map).bindPopup('<b>Нигерия</b><br>Высокая плотность населения, нехватка очищенной воды.');
-      L.marker([36.2, 138.2]).addTo(map).bindPopup('<b>Япония</b><br>Снижение подушевого потребления из-за роста затрат и экологических мер.');
+      L.marker([15.4, 18.7]).addTo(map).bindPopup('Чад');
+      L.marker([9.0, 8.6]).addTo(map).bindPopup('Нигерия');
+      L.marker([36.2, 138.2]).addTo(map).bindPopup('Япония');
     }
 
     function verifyTask3() {
+      const c1 = document.getElementById('chk-country-chad').checked;
+      const c2 = document.getElementById('chk-country-norway').checked;
+      const c3 = document.getElementById('chk-country-nigeria').checked;
+      const c4 = document.getElementById('chk-country-japan').checked;
+
       const fb = document.getElementById('task-feedback');
       const fc = document.getElementById('feedback-content');
       fb.style.display = 'block';
-      fc.innerHTML = '<span style="color:#059669; font-weight:700;">✓ Отлично!</span> Вы выделили географические примеры из § 20 (Япония, Чад, Нигерия), где потребление на человека снижается из-за истощения и дороговизны очистки.';
-      StateManager.setCompleted('p20_t3', 100);
-      showToast('Задание 3 выполнено!', 'success');
-      updateHeaderBadge();
+
+      if (c1 && !c2 && c3 && c4) {
+        fc.innerHTML = '<span style="color:#059669; font-weight:700;">[OK] Верно.</span> Выделили все три государства из § 20 со спадом подушевого потребления воды.';
+        StateManager.setCompleted('p20_t3', 100);
+        showToast('Задание 3 выполнено', 'success');
+        updateHeaderBadge();
+      } else {
+        fc.innerHTML = '<span style="color:#dc2626; font-weight:700;">[X] Неверный список.</span> Исключите страны с избыточным увлажнением и проверьте примеры из параграфа.';
+      }
     }
 
     function updateHeaderBadge() {
-      const c1 = StateManager.isCompleted('p20_t1');
-      const c2 = StateManager.isCompleted('p20_t2');
-      const c3 = StateManager.isCompleted('p20_t3');
-      const count = [c1, c2, c3].filter(Boolean).length;
+      const count = [StateManager.isCompleted('p20_t1'), StateManager.isCompleted('p20_t2'), StateManager.isCompleted('p20_t3')].filter(Boolean).length;
       const b = document.getElementById('module-progress');
-      b.innerText = `${count} / 3 выполнено`;
+      b.innerText = `${count} / 3`;
       if (count === 3) b.className = 'badge success';
     }
 

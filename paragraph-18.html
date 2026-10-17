@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>§ 18. Местное управление природопользованием — GEO-ECO LAB</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -12,12 +12,12 @@
 
   <header class="app-header">
     <div class="header-container">
-      <div style="display: flex; align-items: center; gap: 16px;">
-        <a href="index.html" class="btn btn-secondary btn-sm">← На главную</a>
-        <div style="font-size: 14px; font-weight: 600;">§ 18. Местное управление природопользованием</div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <a href="index.html" class="btn btn-secondary btn-sm">На главную</a>
+        <div style="font-size: 13px; font-weight: 600;">§ 18. Местное управление природопользованием</div>
       </div>
       <div class="header-actions">
-        <span id="module-progress" class="badge">0 / 3 выполнено</span>
+        <span id="module-progress" class="badge">0 / 3</span>
       </div>
     </div>
   </header>
@@ -25,71 +25,68 @@
   <main class="main-content">
     <div class="workspace-grid">
       
-      <!-- Interactive Sidebar Controller -->
       <div class="sidebar-panel">
-        
-        <!-- Tab Selector -->
         <div class="tabs-nav">
           <button class="tab-btn active" onclick="switchTask(1)">Задание 1</button>
           <button class="tab-btn" onclick="switchTask(2)">Задание 2</button>
           <button class="tab-btn" onclick="switchTask(3)">Задание 3</button>
         </div>
 
-        <!-- Task 1 Info -->
+        <!-- Task 1: Без шпаргалки -->
         <div id="task-view-1" class="card">
-          <div class="badge" style="margin-bottom: 8px;">Задание 1. Напряжённость ландшафтов</div>
-          <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 8px;">Оценка экологической напряжённости</h3>
+          <div class="badge" style="margin-bottom: 8px;">Задание 1</div>
+          <h3 style="font-size: 14px; font-weight: 700; margin-bottom: 6px;">Оценка экологической напряжённости ландшафтов</h3>
           <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
-            В регионах с высокой напряжённостью требуется частичное изменение структуры природопользования. Кликайте по полигонам областей на карте и присвойте им научно обоснованный уровень экологической напряжённости (Критический, Высокий, Умеренный).
+            В регионах с высокой экологической напряжённостью требуется частичное изменение структуры природопользования. Кликайте по зонам областей на карте и установите научно обоснованный статус (Критический, Высокий, Умеренный), опираясь на тип хозяйственной нагрузки.
           </p>
           <button onclick="verifyTask1()" class="btn btn-primary" style="width: 100%;">Проверить зонирование</button>
         </div>
 
-        <!-- Task 2 Info -->
+        <!-- Task 2: Региональное природопользование -->
         <div id="task-view-2" class="card" style="display: none;">
-          <div class="badge" style="margin-bottom: 8px;">Задание 2. Концепции развития</div>
-          <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 8px;">Специфика регионального природопользования</h3>
+          <div class="badge" style="margin-bottom: 8px;">Задание 2</div>
+          <h3 style="font-size: 14px; font-weight: 700; margin-bottom: 6px;">Концепция регионального природопользования</h3>
           <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
-            Для каждого региона необходима собственная концепция устойчивого развития. Выберите правильные природоохранные меры для целевых кластеров.
+            Сформулируйте первоочередные природоохранные меры с учётом специфики хозяйственной деятельности ключевых районов:
           </p>
           
           <div style="margin-bottom: 12px;">
-            <label style="font-size: 12px; font-weight: 600;">Костанайская область (зерносеяние):</label>
-            <select id="t2-kostanay" style="width: 100%; padding: 6px; margin-top: 4px; border-radius: var(--radius-sm); border: 1px solid var(--border-dim); font-size: 12px;">
+            <label style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 4px;">Зерносеющие районы (Костанайская область):</label>
+            <select id="t2-kostanay">
               <option value="">-- Выберите регламент мер --</option>
-              <option value="wind_erosion">Защита от ветровой эрозии почв и сохранение гумуса</option>
-              <option value="mining_rehab">Рекультивация карьеров и отвалов породы</option>
-              <option value="desalination">Опреснение морских вод и защита тюленей</option>
+              <option value="mining_rehab">Рекультивация нарушенных карьерных выемок</option>
+              <option value="wind_erosion">Защита от ветровой эрозии почв и сохранение гумусного слоя</option>
+              <option value="pasture_expansion">Интенсивный выпас скота на залежных землях</option>
             </select>
           </div>
 
           <div style="margin-bottom: 16px;">
-            <label style="font-size: 12px; font-weight: 600;">Горнорудный Алтай / Караганда:</label>
-            <select id="t2-mining" style="width: 100%; padding: 6px; margin-top: 4px; border-radius: var(--radius-sm); border: 1px solid var(--border-dim); font-size: 12px;">
+            <label style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 4px;">Горнодобывающие районы (Караганда, Рудный Алтай):</label>
+            <select id="t2-mining">
               <option value="">-- Выберите регламент мер --</option>
-              <option value="crop_rotation">Введение травопольных севооборотов</option>
-              <option value="land_reclamation">Рекультивация нарушенных ландшафтов и очистные сооружения</option>
-              <option value="pasture_expansion">Интенсивное расширение пастбищных угодий</option>
+              <option value="crop_rotation">Внедрение травопольного севооборота</option>
+              <option value="land_reclamation">Рекультивация нарушенных земель и очистные сооружения</option>
+              <option value="wind_erosion">Борьба с пыльными бурями в степях</option>
             </select>
           </div>
 
           <button onclick="verifyTask2()" class="btn btn-primary" style="width: 100%;">Проверить концепцию</button>
         </div>
 
-        <!-- Task 3 Info -->
+        <!-- Task 3: Полномочия органов МСУ -->
         <div id="task-view-3" class="card" style="display: none;">
-          <div class="badge" style="margin-bottom: 8px;">Задание 3. Полномочия органов МСУ</div>
-          <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 8px;">Организация среды населённого пункта</h3>
+          <div class="badge" style="margin-bottom: 8px;">Задание 3</div>
+          <h3 style="font-size: 14px; font-weight: 700; margin-bottom: 6px;">Полномочия местного самоуправления на плане поселения</h3>
           <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
-            Расставьте 4 обязательных объекта местного самоуправления по нормам § 18 на плане городского поселения:
+            Выберите функциональный объект и кликните по карте населённого пункта для его размещения:
           </p>
           <div style="display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px;">
-            <button class="btn btn-secondary btn-sm" onclick="setActivePlacement('landfill')" id="btn-place-landfill">Полигон захоронения ТБО</button>
-            <button class="btn btn-secondary btn-sm" onclick="setActivePlacement('greenery')" id="btn-place-greenery">Озеленение и рекреация</button>
-            <button class="btn btn-secondary btn-sm" onclick="setActivePlacement('treatment')" id="btn-place-treatment">Очистные сооружения стоков</button>
-            <button class="btn btn-secondary btn-sm" onclick="setActivePlacement('reserve')" id="btn-place-reserve">Памятник природы (охраняемый объект)</button>
+            <button class="btn btn-secondary btn-sm" onclick="setActivePlacement('landfill')" id="btn-place-landfill">[+] Полигон захоронения ТБО</button>
+            <button class="btn btn-secondary btn-sm" onclick="setActivePlacement('greenery')" id="btn-place-greenery">[+] Озеленение и санитарная зона</button>
+            <button class="btn btn-secondary btn-sm" onclick="setActivePlacement('treatment')" id="btn-place-treatment">[+] Станция очистки сточных вод</button>
+            <button class="btn btn-secondary btn-sm" onclick="setActivePlacement('reserve')" id="btn-place-reserve">[+] Охраняемый природный памятник</button>
           </div>
-          <button onclick="verifyTask3()" class="btn btn-primary" style="width: 100%;">Проверить план поселения</button>
+          <button onclick="verifyTask3()" class="btn btn-primary" style="width: 100%;">Проверить структуру поселения</button>
         </div>
 
         <div id="task-feedback" class="card" style="display: none; background: var(--bg-subtle);">
@@ -98,12 +95,10 @@
 
       </div>
 
-      <!-- Map Viewport -->
       <div class="card map-panel">
         <div class="map-toolbar">
-          <span style="font-weight: 600;" id="map-mode-label">Режим: Экологическая напряжённость РК</span>
-          <span style="color: var(--text-subtle);">|</span>
-          <span id="map-hint" style="color: var(--text-muted);">Кликните на регион для переключения статуса</span>
+          <span style="font-weight: 600;" id="map-mode-label">Режим: Экологическая напряжённость</span>
+          <span id="map-hint" style="color: var(--text-muted);">Клик по кругу меняет уровень</span>
         </div>
         <div id="map18" class="map-container"></div>
       </div>
@@ -119,18 +114,17 @@
     let currentPlacement = null;
     let placedMarkers = {};
 
-    // Kazakhstan Regions Data for Task 1
     const regions = [
-      { id: 'karaganda', name: 'Карагандинская область', coords: [49.8, 73.1], correct: 'critical', current: 'moderate' },
-      { id: 'vko', name: 'Рудный Алтай (ВКО)', coords: [50.1, 82.6], correct: 'critical', current: 'moderate' },
-      { id: 'kostanay', name: 'Костанайская область', coords: [53.2, 63.6], correct: 'high', current: 'moderate' },
-      { id: 'sko', name: 'Северо-Казахстанская область', coords: [54.8, 69.1], correct: 'moderate', current: 'moderate' }
+      { id: 'karaganda', name: 'Карагандинский бассейн', coords: [49.8, 73.1], correct: 'critical', current: 'moderate' },
+      { id: 'vko', name: 'Рудный Алтай', coords: [50.1, 82.6], correct: 'critical', current: 'moderate' },
+      { id: 'kostanay', name: 'Костанайский район', coords: [53.2, 63.6], correct: 'high', current: 'moderate' },
+      { id: 'sko', name: 'Северная лесостепь', coords: [54.8, 69.1], correct: 'moderate', current: 'moderate' }
     ];
 
     const STRESS_COLORS = {
-      moderate: '#10b981', // green
-      high: '#f59e0b',     // yellow/orange
-      critical: '#ef4444'  // red
+      moderate: '#10b981',
+      high: '#f59e0b',
+      critical: '#ef4444'
     };
 
     function initModule() {
@@ -147,26 +141,23 @@
       document.getElementById('task-view-3').style.display = taskNum === 3 ? 'block' : 'none';
       document.getElementById('task-feedback').style.display = 'none';
 
-      // Clear layers
       map.eachLayer(layer => {
-        if (layer instanceof L.Circle || layer instanceof L.Marker || layer instanceof L.Polygon) {
-          map.removeLayer(layer);
-        }
+        if (layer instanceof L.Circle || layer instanceof L.Marker) map.removeLayer(layer);
       });
 
       if (taskNum === 1) {
-        document.getElementById('map-mode-label').innerText = 'Режим: Экологическая напряжённость РК';
-        document.getElementById('map-hint').innerText = 'Кликните на регион для смены уровня напряжённости';
+        document.getElementById('map-mode-label').innerText = 'Режим: Экологическая напряжённость';
+        document.getElementById('map-hint').innerText = 'Кликните на область для изменения статуса';
         map.setView([50.0, 72.0], 5);
         renderTask1Map();
       } else if (taskNum === 2) {
-        document.getElementById('map-mode-label').innerText = 'Режим: Зоны природопользования РК';
-        document.getElementById('map-hint').innerText = 'Ознакомьтесь с географией ключевых центров';
+        document.getElementById('map-mode-label').innerText = 'Режим: Зоны природопользования';
+        document.getElementById('map-hint').innerText = 'Ключевые промышленные и аграрные центры';
         map.setView([51.0, 71.0], 5);
         renderTask2Map();
       } else if (taskNum === 3) {
-        document.getElementById('map-mode-label').innerText = 'Режим: План населённого пункта (МСУ)';
-        document.getElementById('map-hint').innerText = 'Выберите объект слева и кликните на карту города';
+        document.getElementById('map-mode-label').innerText = 'Режим: Населённый пункт (МСУ)';
+        document.getElementById('map-hint').innerText = 'Выберите категорию и укажите точку на карте';
         map.setView([51.1694, 71.4491], 12);
         renderTask3Map();
       }
@@ -175,7 +166,7 @@
     function renderTask1Map() {
       regions.forEach(reg => {
         const circle = L.circle(reg.coords, {
-          radius: 120000,
+          radius: 110000,
           color: STRESS_COLORS[reg.current],
           fillColor: STRESS_COLORS[reg.current],
           fillOpacity: 0.45,
@@ -185,7 +176,6 @@
         circle.bindTooltip(`${reg.name}: <b>${getStressLabel(reg.current)}</b>`, { permanent: true, direction: 'center' });
 
         circle.on('click', () => {
-          // cycle state: moderate -> high -> critical -> moderate
           if (reg.current === 'moderate') reg.current = 'high';
           else if (reg.current === 'high') reg.current = 'critical';
           else reg.current = 'moderate';
@@ -212,18 +202,18 @@
       fb.style.display = 'block';
 
       if (isCorrect) {
-        fc.innerHTML = '<span style="color:#059669; font-weight:700;">✓ Верно!</span> Вы точно определили зоны высокой и критической напряжённости (Рудный Алтай и Караганда — промышленные очаги, Костанай — ветровая эрозия пашни).';
+        fc.innerHTML = '<span style="color:#059669; font-weight:700;">[OK] Верно.</span> Структура экологической напряжённости ландшафтов определена точно.';
         StateManager.setCompleted('p18_t1', 100);
-        showToast('Задание 1 выполнено успешно!', 'success');
+        showToast('Задание 1 выполнено', 'success');
         updateHeaderBadge();
       } else {
-        fc.innerHTML = '<span style="color:#dc2626; font-weight:700;">✗ Есть неточности.</span> Напоминание: Карагандинский угольный бассейн и Рудный Алтай имеют критическую напряжённость; зерновые степи Костаная подвержены ветровой эрозии (высокая).';
+        fc.innerHTML = '<span style="color:#dc2626; font-weight:700;">[X] Неверно.</span> Проанализируйте различия между горнодобывающими центрами, зерновыми степями и лесостепью.';
       }
     }
 
     function renderTask2Map() {
-      L.marker([53.2, 63.6]).addTo(map).bindPopup('<b>Костанайский зерновой регион</b><br>Интенсивное полеводство, истощение гумуса.').openPopup();
-      L.marker([49.8, 73.1]).addTo(map).bindPopup('<b>Карагандинско-Алтайский кластер</b><br>Горнодобывающая промышленность, отвалы, шлаки.');
+      L.marker([53.2, 63.6]).addTo(map).bindPopup('<b>Костанайский район</b><br>Зерносеяние, ветровая эрозия.');
+      L.marker([49.8, 73.1]).addTo(map).bindPopup('<b>Карагандинско-Алтайский кластер</b><br>Горнодобывающая промышленность.');
     }
 
     function verifyTask2() {
@@ -234,30 +224,27 @@
       fb.style.display = 'block';
 
       if (v1 === 'wind_erosion' && v2 === 'land_reclamation') {
-        fc.innerHTML = '<span style="color:#059669; font-weight:700;">✓ Верно!</span> Согласно § 18, для Костаная приоритетен режим защиты от ветровой эрозии почв, а для горнорудных кластеров — обязательная рекультивация нарушенных ландшафтов.';
+        fc.innerHTML = '<span style="color:#059669; font-weight:700;">[OK] Верно.</span> Для зерносеющих зон необходим режим защиты от ветровой эрозии, а для горнодобывающих — рекультивация нарушенных ландшафтов.';
         StateManager.setCompleted('p18_t2', 100);
-        showToast('Задание 2 зачтено!', 'success');
+        showToast('Задание 2 выполнено', 'success');
         updateHeaderBadge();
       } else {
-        fc.innerHTML = '<span style="color:#dc2626; font-weight:700;">✗ Неверно.</span> Сопоставьте специализацию ландшафтов с мерами из текста параграфа.';
+        fc.innerHTML = '<span style="color:#dc2626; font-weight:700;">[X] Ошибка выбора.</span> Сопоставьте регламенты с реальными экологическими угрозами данных регионов.';
       }
     }
 
     function setActivePlacement(type) {
       currentPlacement = type;
-      showToast(`Выбран объект для размещения на карте города`, 'info');
+      showToast('Объект выбран: укажите точку на карте', 'info');
     }
 
     function renderTask3Map() {
-      // Base zones in the settlement
       map.on('click', (e) => {
         if (!currentPlacement) return;
         if (placedMarkers[currentPlacement]) {
           map.removeLayer(placedMarkers[currentPlacement]);
         }
-        const marker = L.marker(e.latlng, {
-          title: currentPlacement
-        }).addTo(map);
+        const marker = L.marker(e.latlng).addTo(map);
         marker.bindPopup(`<b>${getPlacementName(currentPlacement)}</b>`).openPopup();
         placedMarkers[currentPlacement] = marker;
       });
@@ -265,9 +252,9 @@
 
     function getPlacementName(key) {
       if (key === 'landfill') return 'Полигон ТБО (Санитарная очистка)';
-      if (key === 'greenery') return 'Озеленение и рекреационная зона';
-      if (key === 'treatment') return 'Городские очистные сооружения';
-      if (key === 'reserve') return 'Охраняемый природный памятник';
+      if (key === 'greenery') return 'Озеленение населённого пункта';
+      if (key === 'treatment') return 'Очистные сооружения';
+      if (key === 'reserve') return 'Охрана природного объекта';
       return key;
     }
 
@@ -277,22 +264,19 @@
       fb.style.display = 'block';
 
       if (Object.keys(placedMarkers).length >= 4) {
-        fc.innerHTML = '<span style="color:#059669; font-weight:700;">✓ Комплекс МСУ сформирован!</span> Все 4 обязательных направления полномочий органов местного самоуправления (§ 18) учтены в инфраструктуре поселения.';
+        fc.innerHTML = '<span style="color:#059669; font-weight:700;">[OK] Комплекс сформирован.</span> Все 4 обязательных направления полномочий органов МСУ учтены в инфраструктуре.';
         StateManager.setCompleted('p18_t3', 100);
-        showToast('Задание 3 выполнено!', 'success');
+        showToast('Задание 3 выполнено', 'success');
         updateHeaderBadge();
       } else {
-        fc.innerHTML = '<span style="color:#dc2626; font-weight:700;">✗ Не все объекты размещены.</span> Необходимо поставить на плане все 4 типа объектов МСУ.';
+        fc.innerHTML = '<span style="color:#dc2626; font-weight:700;">[X] Не все объекты размещены.</span> Разместите все 4 типа объектов МСУ на плане.';
       }
     }
 
     function updateHeaderBadge() {
-      const c1 = StateManager.isCompleted('p18_t1');
-      const c2 = StateManager.isCompleted('p18_t2');
-      const c3 = StateManager.isCompleted('p18_t3');
-      const count = [c1, c2, c3].filter(Boolean).length;
+      const count = [StateManager.isCompleted('p18_t1'), StateManager.isCompleted('p18_t2'), StateManager.isCompleted('p18_t3')].filter(Boolean).length;
       const b = document.getElementById('module-progress');
-      b.innerText = `${count} / 3 выполнено`;
+      b.innerText = `${count} / 3`;
       if (count === 3) b.className = 'badge success';
     }
 
