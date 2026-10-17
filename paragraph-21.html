@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>§ 21. Устойчивое водопользование — GEO-ECO LAB</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="app-header">
+    <div class="header-container">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <a href="index.html" class="btn btn-secondary btn-sm">← На главную</a>
+        <div style="font-size: 14px; font-weight: 600;">§ 21. Устойчивое водопользование</div>
+      </div>
+      <div class="header-actions">
+        <span id="module-progress" class="badge">0 / 3 выполнено</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="workspace-grid">
+      
+      <div class="sidebar-panel">
+        <div class="tabs-nav">
+          <button class="tab-btn active" onclick="switchTask(1)">Задание 1</button>
+          <button class="tab-btn" onclick="switchTask(2)">Задание 2</button>
+          <button class="tab-btn" onclick="switchTask(3)">Задание 3</button>
+        </div>
+
+        <!-- Task 1 -->
+        <div id="task-view-1" class="card">
+          <div class="badge" style="margin-bottom: 8px;">Задание 1. Технологии водосбережения</div>
+          <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 8px;">Эффективность водопользования</h3>
+          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+            Укажите эффекты внедрения передовых технологий, упомянутых в § 21:
+          </p>
+
+          <div style="margin-bottom: 12px;">
+            <label style="font-size: 12px; font-weight: 600;">Капельное орошение снижает расход воды на:</label>
+            <select id="p21-drip-save" style="width: 100%; padding: 6px; border: 1px solid var(--border-dim); border-radius: var(--radius-sm); font-size: 12px;">
+              <option value="">-- Выберите процент --</option>
+              <option value="10-20">10–20%</option>
+              <option value="30-70">30–70% (урожайность +20–90%)</option>
+              <option value="80-95">80–95%</option>
+            </select>
+          </div>
+
+          <div style="margin-bottom: 16px;">
+            <label style="font-size: 12px; font-weight: 600;">Бытовые водосберегающие устройства экономят:</label>
+            <select id="p21-home-save" style="width: 100%; padding: 6px; border: 1px solid var(--border-dim); border-radius: var(--radius-sm); font-size: 12px;">
+              <option value="">-- Выберите процент --</option>
+              <option value="50">До 50% расхода воды</option>
+              <option value="15">Не более 15%</option>
+            </select>
+          </div>
+
+          <button onclick="verifyTask1()" class="btn btn-primary" style="width: 100%;">Проверить нормативы</button>
+        </div>
+
+        <!-- Task 2 -->
+        <div id="task-view-2" class="card" style="display: none;">
+          <div class="badge" style="margin-bottom: 8px;">Задание 2. Устранение утечек (25%)</div>
+          <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 8px;">Металлополимерный бандаж</h3>
+          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+            Около 25% воды теряется при перекачке. Кликните по повреждённым участкам водовода на карте Казахстана и примените <strong>«Металлополимерный бандаж»</strong> (двухкомпонентную смолу, армированную металлической пылью).
+          </p>
+
+          <div style="font-size: 12px; background: var(--bg-subtle); padding: 10px; border-radius: var(--radius-sm); margin-bottom: 14px;">
+            Устранено протечек: <b id="leak-fixed-count">0 / 3</b>
+          </div>
+
+          <button onclick="verifyTask2()" class="btn btn-primary" style="width: 100%;">Зафиксировать ремонт сетей</button>
+        </div>
+
+        <!-- Task 3 -->
+        <div id="task-view-3" class="card" style="display: none;">
+          <div class="badge" style="margin-bottom: 8px;">Задание 3. Климатическая адаптация</div>
+          <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 8px;">Ледники Тянь-Шаня и устойчивость</h3>
+          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+            Сокращение площади горных ледников угрожает поселениям востока и юго-востока РК. Выберите адаптационные решения:
+          </p>
+
+          <div style="margin-bottom: 16px; font-size: 12px; display: flex; flex-direction: column; gap: 8px;">
+            <label><input type="checkbox" id="chk-adapt-1" checked> Сбор дождевой воды с крыш городских зданий для полива</label>
+            <label><input type="checkbox" id="chk-adapt-2" checked> Высаживание засухоустойчивых растений в аридных зонах</label>
+            <label><input type="checkbox" id="chk-adapt-3"> Увеличение промышленного забора пресной воды из рек</label>
+          </div>
+
+          <button onclick="verifyTask3()" class="btn btn-primary" style="width: 100%;">Проверить адаптацию</button>
+        </div>
+
+        <div id="task-feedback" class="card" style="display: none; background: var(--bg-subtle);">
+          <div id="feedback-content" style="font-size: 12px;"></div>
+        </div>
+
+      </div>
+
+      <div class="card map-panel">
+        <div class="map-toolbar">
+          <span style="font-weight: 600;" id="map-mode-label">Инфраструктура водоснабжения и ледниковые пояса РК</span>
+        </div>
+        <div id="map21" class="map-container"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    let map = null;
+    let fixedLeaks = 0;
+
+    const pipelineLeaks = [
+      { id: 1, coords: [47.1, 51.9], title: 'Участок Атырау — Мангистау', fixed: false },
+      { id: 2, coords: [49.8, 73.2], title: 'Магистраль Караганда — Темиртау', fixed: false },
+      { id: 3, coords: [43.3, 68.3], title: 'Водовод Туркестанской зоны', fixed: false }
+    ];
+
+    function initModule() {
+      map = createStandardMap('map21', [48.0, 71.0], 5);
+      renderTask1Map();
+      updateHeaderBadge();
+    }
+
+    function switchTask(num) {
+      document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', i + 1 === num));
+      document.getElementById('task-view-1').style.display = num === 1 ? 'block' : 'none';
+      document.getElementById('task-view-2').style.display = num === 2 ? 'block' : 'none';
+      document.getElementById('task-view-3').style.display = num === 3 ? 'block' : 'none';
+      document.getElementById('task-feedback').style.display = 'none';
+
+      map.eachLayer(l => {
+        if (l instanceof L.Marker || l instanceof L.Circle || l instanceof L.Polyline) map.removeLayer(l);
+      });
+
+      if (num === 1) {
+        document.getElementById('map-mode-label').innerText = 'Агротехнологии: Зоны внедрения капельного орошения на юге РК';
+        map.setView([44.0, 72.0], 6);
+        renderTask1Map();
+      } else if (num === 2) {
+        document.getElementById('map-mode-label').innerText = 'Ликвидация 25% потерь: Диагностика водоводов';
+        map.setView([47.0, 68.0], 5);
+        renderTask2Map();
+      } else if (num === 3) {
+        document.getElementById('map-mode-label').innerText = 'Мониторинг ледников Тянь-Шаня и Алтая (Восток / Юго-Восток РК)';
+        map.setView([44.0, 78.0], 6);
+        renderTask3Map();
+      }
+    }
+
+    function renderTask1Map() {
+      L.circle([42.5, 69.6], { radius: 100000, color: '#059669', fillColor: '#10b981', fillOpacity: 0.4 }).addTo(map)
+        .bindPopup('<b>Южный Казахстан</b><br>Приоритет: капельное орошение полей. Экономия 30–70% воды.');
+    }
+
+    function verifyTask1() {
+      const v1 = document.getElementById('p21-drip-save').value;
+      const v2 = document.getElementById('p21-home-save').value;
+      const fb = document.getElementById('task-feedback');
+      const fc = document.getElementById('feedback-content');
+      fb.style.display = 'block';
+
+      if (v1 === '30-70' && v2 === '50') {
+        fc.innerHTML = '<span style="color:#059669; font-weight:700;">✓ Точные цифры!</span> Капельное орошение бережёт 30–70% воды при росте урожая до 20–90%, а домашние аэраторы экономят до 50%.';
+        StateManager.setCompleted('p21_t1', 100);
+        showToast('Задание 1 зачтено!', 'success');
+        updateHeaderBadge();
+      } else {
+        fc.innerHTML = '<span style="color:#dc2626; font-weight:700;">✗ Неверные значения.</span> Проверьте точные показатели из текста § 21.';
+      }
+    }
+
+    function renderTask2Map() {
+      pipelineLeaks.forEach(lk => {
+        const marker = L.circleMarker(lk.coords, {
+          radius: 10,
+          color: lk.fixed ? '#059669' : '#dc2626',
+          fillColor: lk.fixed ? '#10b981' : '#ef4444',
+          fillOpacity: 0.8
+        }).addTo(map);
+
+        marker.bindPopup(`<b>${lk.title}</b><br>Статус: ${lk.fixed ? 'Бандаж наложен (утечка устранена)' : 'Утечка ~25%! Кликните для ремонта металлополимером.'}`);
+
+        marker.on('click', () => {
+          if (!lk.fixed) {
+            lk.fixed = true;
+            fixedLeaks++;
+            marker.setStyle({ color: '#059669', fillColor: '#10b981' });
+            marker.setPopupContent(`<b>${lk.title}</b><br>✓ Герметизация завершена металлополимерным составом!`);
+            document.getElementById('leak-fixed-count').innerText = `${fixedLeaks} / 3`;
+            showToast(`Утечка устранена: ${lk.title}`, 'info');
+          }
+        });
+      });
+    }
+
+    function verifyTask2() {
+      const fb = document.getElementById('task-feedback');
+      const fc = document.getElementById('feedback-content');
+      fb.style.display = 'block';
+
+      if (fixedLeaks >= 3) {
+        fc.innerHTML = '<span style="color:#059669; font-weight:700;">✓ Все утечки устранены!</span> Металлополимерный бандаж успешно предотвратил 25% потерь транспортируемой воды.';
+        StateManager.setCompleted('p21_t2', 100);
+        showToast('Задание 2 выполнено!', 'success');
+        updateHeaderBadge();
+      } else {
+        fc.innerHTML = '<span style="color:#dc2626; font-weight:700;">✗ Есть открытые аварии.</span> Наложите металлополимерный бандаж на все 3 повреждённых участка водоводов.';
+      }
+    }
+
+    function renderTask3Map() {
+      L.marker([43.0, 77.1]).addTo(map).bindPopup('<b>Ледники Заилийского Алатау</b><br>Источник стока рек юго-востока. Сокращение угрожает поселениям.');
+      L.marker([49.5, 86.0]).addTo(map).bindPopup('<b>Ледники Алтая</b><br>Формирование истоков Иртыша.');
+    }
+
+    function verifyTask3() {
+      const a1 = document.getElementById('chk-adapt-1').checked;
+      const a2 = document.getElementById('chk-adapt-2').checked;
+      const a3 = document.getElementById('chk-adapt-3').checked;
+
+      const fb = document.getElementById('task-feedback');
+      const fc = document.getElementById('feedback-content');
+      fb.style.display = 'block';
+
+      if (a1 && a2 && !a3) {
+        fc.innerHTML = '<span style="color:#059669; font-weight:700;">✓ Программа адаптации верна!</span> Сбор дождевой воды и засухоустойчивые растения снижают зависимость от тающих ледников.';
+        StateManager.setCompleted('p21_t3', 100);
+        showToast('Задание 3 зачтено!', 'success');
+        updateHeaderBadge();
+      } else {
+        fc.innerHTML = '<span style="color:#dc2626; font-weight:700;">✗ Ошибка.</span> Увеличение забора из рек лишь усугубит кризис. Оставьте только экологичные меры.';
+      }
+    }
+
+    function updateHeaderBadge() {
+      const c1 = StateManager.isCompleted('p21_t1');
+      const c2 = StateManager.isCompleted('p21_t2');
+      const c3 = StateManager.isCompleted('p21_t3');
+      const count = [c1, c2, c3].filter(Boolean).length;
+      const b = document.getElementById('module-progress');
+      b.innerText = `${count} / 3 выполнено`;
+      if (count === 3) b.className = 'badge success';
+    }
+
+    window.addEventListener('DOMContentLoaded', initModule);
+  </script>
+</body>
+</html>
